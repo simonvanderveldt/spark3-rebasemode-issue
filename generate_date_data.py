@@ -17,7 +17,7 @@ schema = StructType([
     StructField("date", DateType(), True)])
 
 df = spark.createDataFrame([
-    (1, date(day=1, month=10, year=220)),
+    (1, date(day=1, month=10, year=1000)),
     (2, date(day=1, month=10, year=1880)),
     (3, date(day=1, month=10, year=2020))], schema)
 
