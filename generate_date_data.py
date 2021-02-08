@@ -8,7 +8,11 @@ from pyspark.sql.types import StructField, StructType, DateType, StringType
 
 VENV = os.environ["VIRTUAL_ENV"].split("/")[-1].split(".")[-1]
 
-spark = SparkSession.builder.appName("generate-date-data").getOrCreate()
+spark_conf = SparkConf().setAll([
+    ("spark.sql.legacy.parquet.datetimeRebaseModeInWrite", "CORRECTED")])
+spark = SparkSession.builder.appName("read-data").config(conf=spark_conf).getOrCreate()
+
+# spark = SparkSession.builder.appName("generate-date-data").getOrCreate()
 print("Spark version:", spark.version)
 print("Spark conf", SparkConf().getAll())
 
